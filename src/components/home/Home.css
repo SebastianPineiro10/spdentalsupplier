@@ -1,0 +1,155 @@
+/* Carrusel */
+.carousel-container {
+    width: 100%;
+    margin-top: 150px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .carousel .slide img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 0;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel .slide:hover img {
+    transform: scale(1.05);
+  }
+  
+  .legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+  }
+  
+  /* Filosofía */
+  .philosophy-section {
+    text-align: center;
+    margin-top: 50px;
+    padding: 60px 0;
+    background-color: #f4f4f4;
+  }
+  
+  .philosophy-section h3 {
+    font-size: 36px;
+    color: #003366;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .philosophy-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .philosophy-item {
+    flex: 1 1 30%;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #666;
+    margin: 20px 0;
+  }
+  
+  .philosophy-item h4 {
+    font-size: 22px;
+    color: #003366;
+    margin-bottom: 10px;
+  }
+  
+  .philosophy-item p {
+    line-height: 1.8;
+  }
+  
+  /* Sección Informativa: ¿Por qué elegirnos? */
+  .info-section {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .info-section h3 {
+    font-size: 36px;
+    color: #003366;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .info-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  
+  .info-item {
+    flex: 1 1 30%;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #666;
+  }
+  
+  .info-item i {
+    font-size: 40px;
+    color: #003366;
+    margin-bottom: 15px;
+  }
+  
+  .info-item h4 {
+    font-size: 22px;
+    color: #003366;
+    margin-bottom: 10px;
+  }
+  
+  .info-item p {
+    line-height: 1.6;
+    font-size: 14px;
+  }
+  
+  .info-item:hover {
+    transform: translateY(-10px);
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .carousel-container {
+      margin-top: 80px;
+    }
+  
+    .philosophy-container,
+    .info-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .philosophy-item,
+    .info-item {
+      flex: 1 1 80%;  /* Ajuste para pantallas pequeñas */
+      margin-bottom: 20px;
+    }
+  
+    .info-item i {
+      font-size: 50px;  /* Iconos más grandes en móviles */
+    }
+  }
+  
+  

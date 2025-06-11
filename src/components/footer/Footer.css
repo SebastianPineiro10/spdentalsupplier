@@ -1,0 +1,259 @@
+/* Footer principal */
+.footer {
+  background-color: whitesmoke;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido del footer */
+  width: 100%;
+  margin-top: 20px;
+  box-sizing: border-box;
+  position: relative;
+  line-height: 1.4; /* Espaciado más relajado solo para el footer */
+}
+
+/* Contenedor de las secciones de contacto y redes sociales */
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columnas iguales en desktop */
+  gap: 40px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-items: stretch; /* Asegura que todos los elementos dentro del grid se estiren */
+}
+
+/* Sección de contacto y redes sociales */
+.contact, .social-media {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Ajustes específicos para la sección de contacto */
+.contact {
+  align-self: start; /* Alinea la sección de contacto al inicio de su contenedor */
+  margin-left: 20px; /* Mueve la sección de contacto más a la derecha */
+}
+
+/* Títulos en las secciones de contacto y redes sociales */
+.contact h4, .social-media h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilo para los items de contacto */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.contact-item span {
+  margin-left: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Estilos para los íconos de redes sociales */
+.social-icons {
+  display: flex;
+  justify-content: flex-start; /* Alinea los íconos a la izquierda en pantallas pequeñas */
+  gap: 20px;
+}
+
+.social-icons a {
+  font-size: 1.8rem;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #0073e6;
+  transform: scale(1.1);
+}
+
+/* Footer bottom (Columnas) */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  text-align: center;
+}
+
+/* Columnas del footer (Sobre Nosotros, Servicios, Soporte) */
+.footer-column {
+  flex: 1;
+  padding: 0 20px;
+  min-width: 250px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin: 8px 0;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #0073e6;
+}
+
+/* Media Queries para diferentes tamaños de pantalla */
+
+/* Móviles pequeños (hasta 360px de ancho) */
+@media (max-width: 360px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Apilar las secciones de contacto y redes sociales */
+    align-items: flex-start; /* Alinear las secciones a la izquierda */
+    gap: 20px; /* Espacio entre las secciones */
+    text-align: left; /* Alineación de texto a la izquierda */
+  }
+
+  .footer-column {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 15px;
+  }
+
+  .contact, .social-media {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+  }
+
+  /* Eliminar el margen izquierdo para que se alinee bien */
+  .contact {
+    margin-left: 0;
+  }
+}
+
+/* Móviles (hasta 600px de ancho) */
+@media (max-width: 600px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Apilar las secciones de contacto y redes sociales */
+    align-items: flex-start; /* Alinear las secciones a la izquierda */
+    gap: 20px;
+    text-align: left;
+  }
+
+  .footer-column {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .contact, .social-media {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+  }
+
+  /* Eliminar el margen izquierdo para que se alinee bien */
+  .contact {
+    margin-left: 0;
+  }
+}
+
+/* Pantallas medianas (tablets, hasta 768px) */
+@media (max-width: 768px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Apilar las secciones de contacto y redes sociales */
+    align-items: flex-start; /* Alinear las secciones a la izquierda */
+    gap: 20px;
+    text-align: left;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .contact, .social-media {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+  }
+
+  /* Eliminar el margen izquierdo para que se alinee bien */
+  .contact {
+    margin-left: 0;
+  }
+}
+
+/* Pantallas grandes (desktop, hasta 1024px) */
+@media (max-width: 1024px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column; /* Apilar las secciones de contacto y redes sociales */
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer-column {
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  .contact, .social-media {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+  }
+
+  /* Eliminar el margen izquierdo para que se alinee bien */
+  .contact {
+    margin-left: 0;
+  }
+}
+
