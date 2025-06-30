@@ -2,7 +2,7 @@
 
 Este proyecto es un sistema de comercio electrónico desarrollado por **Sebastián Piñeiro Madero** como parte de una practica utilizando React Js. El objetivo es ofrecer un catálogo de productos conectado a Firebase para simular un entorno básico de e-commerce.
 
-🌐 **[Visita la aplicación en vivo aquí](https://spdentalsupplier.vercel.app)**
+🌐 **[Visita la aplicación en vivo aquí]()**
 
 ---
 
