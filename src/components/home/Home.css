@@ -1,7 +1,7 @@
-/* Carrusel */
+/* ---------- Carrusel ---------- */
 .carousel-container {
   width: 100%;
-  margin-top: 150px;
+  padding-top: 30px;
   overflow: hidden;
 }
 
@@ -29,27 +29,50 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
-/* Filosofía */
-.philosophy-section {
-  background-color: #f4f4f4;
+/* ---------- Filosofía e Info (versión desktop) ---------- */
+.philosophy-section,
+.info-section {
   padding: 60px 20px;
   text-align: center;
+  position: relative;
 }
 
-.philosophy-section .section-title {
+.philosophy-section {
+  background-color: #f4f4f4;
+}
+
+.info-section {
+  background-color: #ffffff;
+}
+
+.philosophy-section::after,
+.info-section::after {
+  content: "Desliza hacia los lados →";
+  font-size: 0.9rem;
+  color: #888;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.section-title {
   font-size: 2rem;
   color: #003366;
   margin-bottom: 40px;
 }
 
-.philosophy-container {
+.philosophy-container,
+.info-container {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
 }
 
-.philosophy-item {
+.philosophy-item,
+.info-item {
   background: #fff;
   border-radius: 10px;
   padding: 25px;
@@ -58,80 +81,68 @@
   transition: transform 0.3s ease;
 }
 
-.philosophy-item:hover {
+.info-item {
+  background: #f9f9f9;
+  width: 280px;
+}
+
+.philosophy-item:hover,
+.info-item:hover {
   transform: translateY(-6px);
 }
 
-.philosophy-item h4 {
+.philosophy-item h4,
+.info-item h4 {
   font-size: 20px;
   color: #003366;
   margin-bottom: 12px;
 }
 
-.philosophy-item p {
-  color: #555;
-  line-height: 1.6;
-}
-
-/* Info: ¿Por qué elegirnos? */
-.info-section {
-  background-color: #ffffff;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.info-section .section-title {
-  font-size: 2rem;
-  color: #003366;
-  margin-bottom: 40px;
-}
-
-.info-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.info-item {
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 25px;
-  width: 280px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.info-item:hover {
-  transform: translateY(-6px);
-}
-
-.info-item h4 {
-  font-size: 18px;
-  color: #003366;
-  margin-bottom: 10px;
-}
-
+.philosophy-item p,
 .info-item p {
-  font-size: 14px;
   color: #555;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
 }
 
-/* Responsive */
+/* ---------- Versión Mobile ---------- */
 @media (max-width: 768px) {
-  .carousel .slide img {
-    height: 300px;
-  }
-
   .philosophy-container,
   .info-container {
-    flex-direction: column;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start; /* 🚨 Este es el cambio clave */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 0 0 30px 10px;
+    margin: 0;
   }
 
   .philosophy-item,
   .info-item {
-    width: 90%;
+    flex: 0 0 85%;
+    min-width: 260px;
+    scroll-snap-align: start;
+  }
+
+  .philosophy-section::after,
+  .info-section::after {
+    display: block;
+  }
+
+  .carousel .slide img {
+    height: 280px;
+  }
+
+  .legend {
+    font-size: 14px;
+    padding: 10px 16px;
+    bottom: 15px;
+    left: 15px;
   }
 }
