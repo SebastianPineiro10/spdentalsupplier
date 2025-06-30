@@ -4,7 +4,7 @@
   padding-top: 30px;
   overflow: hidden;
   margin-top: 120px; /* Para evitar que el navbar lo tape en desktop */
-  scroll-margin-top: 120px; /* 🧠 Solución: respeta la altura del navbar al hacer scroll */
+  scroll-margin-top: 120px; /* Solución: respeta la altura del navbar al hacer scroll */
 }
 
 .carousel .slide img {
