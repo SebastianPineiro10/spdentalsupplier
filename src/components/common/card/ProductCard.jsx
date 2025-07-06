@@ -12,7 +12,6 @@ const ProductCard = ({ title, price, image, id,}) => {
       {image && (
         <CardMedia
           component="img"
-          loading="lazy"
           src={image}
           alt={title}
           sx={{

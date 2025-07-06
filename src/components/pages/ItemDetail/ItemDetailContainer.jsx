@@ -9,6 +9,7 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams(); 
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true); 
+
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -16,7 +17,7 @@ const ItemDetailContainer = () => {
         const docSnapshot = await getDoc(docRef);
 
         if (docSnapshot.exists()) {
-          setItem(docSnapshot.data()); 
+          setItem({ id: docSnapshot.id, ...docSnapshot.data() }); // ✅ CORREGIDO
         } else {
           console.error("Producto no encontrado");
         }

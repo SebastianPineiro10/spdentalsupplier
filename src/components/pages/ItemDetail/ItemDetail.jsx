@@ -1,23 +1,46 @@
-import { Box, Typography, Button, CardMedia } from "@mui/material";
-import { useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useCart } from "../../../context/CartContext";
 import PropTypes from "prop-types";
 
 const ItemDetail = ({ item }) => {
   const { addToCart } = useCart();
-  const [selectedImage, setSelectedImage] = useState(item.imageUrl); // Imagen principal
-  const imagesToShow = [
-    item.imageUrl, // Imagen principal
-    "https://via.placeholder.com/400x400.png?text=Imagen+2", // Imagen secundaria 1
-    "https://via.placeholder.com/400x400.png?text=Imagen+3", // Imagen secundaria 2
-  ];
+
+  const [selectedImage, setSelectedImage] = useState("");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [imagesToShow, setImagesToShow] = useState([]);
+
+  // Actualiza imágenes cada vez que cambia el item
+  useEffect(() => {
+    if (Array.isArray(item.images) && item.images.length > 0) {
+      setImagesToShow(item.images);
+      setSelectedImage(item.images[0]);
+    } else {
+      const original = item.imageUrl;
+      const grayscale = original.replace("/upload/", "/upload/e_grayscale/");
+      const sepia = original.replace("/upload/", "/upload/e_sepia/");
+      const fallbackImages = [original, grayscale, sepia];
+      setImagesToShow(fallbackImages);
+      setSelectedImage(original);
+    }
+  }, [item]);
+
+  const handleImageChange = (img) => {
+    if (img !== selectedImage) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedImage(img);
+        setIsTransitioning(false);
+      }, 150); // Más elegante
+    }
+  };
 
   const handleAddToCart = () => {
     addToCart(item);
   };
 
   return (
-    <Box sx={{ padding: "40px 0", backgroundColor: "#f9f9f9", marginTop: "160px" }}> {/* Añadido el margen superior */}
+    <Box sx={{ padding: "40px 0", backgroundColor: "#f9f9f9", marginTop: "160px" }}>
       <Box
         sx={{
           padding: 3,
@@ -33,7 +56,7 @@ const ItemDetail = ({ item }) => {
           flexWrap: "wrap",
         }}
       >
-        {/* Imágenes del producto */}
+        {/* Imagen principal */}
         <Box
           sx={{
             flex: 1,
@@ -45,148 +68,75 @@ const ItemDetail = ({ item }) => {
             marginBottom: { xs: 3, md: 0 },
           }}
         >
-          <CardMedia
-            component="img"
+          <img
             src={selectedImage}
             alt={item.title}
-            sx={{
+            style={{
               width: "100%",
-              maxHeight: "300px",
+              maxWidth: "400px",
+              height: "auto",
               objectFit: "contain",
-              borderRadius: "10px",
-              marginBottom: 3,
-              transition: "transform 0.5s ease-in-out",
-              "&:hover": {
-                transform: "scale(1.05)",
-              },
+              borderRadius: "8px",
+              marginBottom: "16px",
+              opacity: isTransitioning ? 0.3 : 1,
+              transition: "opacity 0.25s ease-in-out",
             }}
           />
 
-          {/* Tira de imágenes */}
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-            {imagesToShow.map((image, index) => (
-              <CardMedia
-                key={index}
-                component="img"
-                src={image}
-                alt={`Imagen del producto ${index + 1}`}
-                sx={{
-                  width: 70,
-                  height: 70,
+          {/* Miniaturas */}
+          <Box sx={{ display: "flex", gap: 2 }}>
+            {imagesToShow.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`Miniatura ${idx + 1}`}
+                onClick={() => handleImageChange(img)}
+                style={{
+                  width: 60,
+                  height: 60,
                   objectFit: "contain",
                   cursor: "pointer",
-                  borderRadius: "5px",
-                  transition: "transform 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                  },
+                  border: selectedImage === img ? "2px solid #007BFF" : "1px solid #ccc",
+                  borderRadius: "6px",
+                  transition: "border 0.2s ease",
                 }}
-                onClick={() => setSelectedImage(image)} // Cambiar imagen principal al hacer clic
               />
             ))}
           </Box>
         </Box>
 
-        {/* Detalles del producto */}
-        <Box
-          sx={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            padding: "20px",
-            height: "100%",
-            maxWidth: { xs: "100%", sm: "80%" },
-          }}
-        >
-          {/* Título del producto */}
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: "bold",
-              marginBottom: 2,
-              fontFamily: "'Roboto', sans-serif",
-              color: "#333",
-              fontSize: { xs: "1.8rem", sm: "2.2rem" },
-              textAlign: "left",
-            }}
-          >
+        {/* Información del producto */}
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <Typography variant="h5" sx={{ fontWeight: 600, marginBottom: 2 }}>
             {item.title}
           </Typography>
-
-          {/* Precio más discreto */}
-          <Typography
-            variant="h5"
-            sx={{
-              color: "#333",
-              fontWeight: "500",
-              marginBottom: 2,
-              fontSize: { xs: "1.4rem", sm: "1.6rem" },
-              padding: "6px 12px",
-              borderRadius: "5px",
-              display: "inline-block",
-            }}
-          >
+          <Typography variant="h6" sx={{ color: "black", marginBottom: 2 }}>
             ${item.price}
           </Typography>
-
-          {/* Descripción del producto */}
-          <Typography
-            variant="body1"
-            sx={{
-              marginBottom: 2,
-              color: "#777",
-              lineHeight: 1.6,
-              textAlign: "left",
-              fontSize: { xs: "1rem", sm: "1.1rem" },
-              maxWidth: "90%",
-              marginTop: 2,
-            }}
-          >
+          <Typography variant="body1" sx={{ marginBottom: 2 }}>
             {item.description}
           </Typography>
-
-          {/* Stock disponible */}
-          <Typography
-            variant="body2"
-            sx={{
-              color: "#555",
-              textAlign: "left",
-              fontSize: { xs: "0.9rem", sm: "1rem" },
-              marginBottom: 2,
-            }}
-          >
+          <Typography variant="body2" sx={{ marginBottom: 3 }}>
             Stock disponible: {item.stock}
           </Typography>
 
-          {/* Botón de añadir al carrito */}
-          <Box
+          <Button
+            variant="contained"
+            onClick={handleAddToCart}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              marginTop: 2,
+              width: "100%",
+              padding: "12px",
+              fontSize: "1rem",
+              borderRadius: "6px",
+              backgroundColor: "#007BFF",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#0056b3",
+              },
             }}
           >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddToCart}
-              sx={{
-                padding: "8px 18px",
-                fontWeight: "500",
-                fontSize: { xs: "1rem", sm: "1.1rem" },
-                borderRadius: "5px",
-                textTransform: "none", // Evitar que el texto se transforme
-                backgroundColor: "#0073e6",
-                "&:hover": {
-                  backgroundColor: "#005bb5",
-                },
-              }}
-            >
-              Añadir al carrito
-            </Button>
-          </Box>
+            Añadir al carrito
+          </Button>
         </Box>
       </Box>
     </Box>
@@ -200,12 +150,8 @@ ItemDetail.propTypes = {
     description: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     stock: PropTypes.number.isRequired,
-    category: PropTypes.string.isRequired,
-    isUploaded: PropTypes.bool.isRequired,
-    additionalImages: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
 
 export default ItemDetail;
-
-
