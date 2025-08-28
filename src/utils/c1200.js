@@ -1,7 +1,6 @@
 // c1200: optimiza imágenes con Cloudinary (AVIF/WebP, q_auto, dpr_auto, ancho).
 // Idempotente: si la URL ya trae transforms, las reemplaza (no duplica).
-// Soporta Cloudinary "/image/upload" y URLs externas (Firebase) vía "image/fetch".
-// Cambia el cloud si el tuyo NO es "dcerhiol0".
+// Soporta Cloudinary "/image/upload" y URLs externas (Firebase) vía "image/fetch"..
 const CLOUD = "dcerhiol0"; // <--- pon aquí tu cloud si es otro
 
 const isStr = (x) => typeof x === "string" && x.length > 0;
