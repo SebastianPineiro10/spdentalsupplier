@@ -98,6 +98,31 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product-card {
+  content-visibility: auto;              /* no renderiza lo que no se ve */
+  contain-intrinsic-size: 320px 260px;   /* reserva tamaño y evita saltos */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: 14px;
+}
+
+.product-card img {
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+
 
 
 
